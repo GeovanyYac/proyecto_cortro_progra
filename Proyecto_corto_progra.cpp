@@ -100,14 +100,6 @@ void juego(){// Ejecuta el juego
     }
         
     // Mostrar ganador y sumar puntos
-	if(!terminar_juego())
-	{
-		cout << "\n************\n";
-    	cout << "¡EMPATE!\n";
-    	cout << "************\n";
-		puntos_j1 += 1;
-		puntos_j2 += 1;
-	}else{
 		if(turnoJugador1) {
         	mostrarGanador(jugador_2);
         	puntos_j2 += 3;
@@ -115,8 +107,7 @@ void juego(){// Ejecuta el juego
         	mostrarGanador(jugador_1);
         	puntos_j1 += 3;
     
-		}
-    }   
+		}  
     cout << "\nPuntos:\n" << jugador_1 << ": " << puntos_j1 << endl << jugador_2 << ": " << puntos_j2 << "\n\n";
     
     //Pregunta al usuario si desea jugar otra partida
