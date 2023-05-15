@@ -1,5 +1,5 @@
 /******************************************************************************
-PROYECTO CORTO PROGRAMACION 1 V1.1
+PROYECTO CORTO PROGRAMACION 1 V1.2
 Programadores: 
     Elder Geovany Yac Mul - 202007018
     Andres Fernando Gonzalez Alcantara - 202308061
@@ -12,7 +12,9 @@ using namespace std;
 
 int fila_1 = 3, fila_2 = 5, fila_3 = 7; // Número de objetos en cada fila
 int puntos_j1 = 0, puntos_j2 = 0; // Puntos de los jugadores
-char logo = 220;
+char logo = 220;// Objetos a elminar - Cubitos
+string jugador_1,jugador_2; // Nombres de los jugadores
+int seleccion_fila,eliminacion; //Fila y cantidad de Cubitos a Eliminar
 
 void imprimir_tablero(){ //Impresion del tablero de juego
     cout << "\n   Fila 1: ";
@@ -60,35 +62,23 @@ void mostrarGanador(string jugador) {//Muestra el jugador que gana la partida
     cout << "************\n";
 }
 
-int main(){
-    string jugador_1,jugador_2;
-    int seleccion_fila,eliminacion;
-    
-    cout<<"*************************************\n";
-    cout<<"/*/*/*/ Bienvenido A NIM /*/*/*/\n";
-    cout<<"*************************************\n";
-    cout<<"Ingrese el nombre del jugador/a 1: ";
-    cin>>jugador_1;
-    cout<<"Ingrese el nombre del jugador/a 2: ";
-    cin>>jugador_2;
-    cout<<"*************************************\n";
-    cout << "*******" << jugador_1 << " vs " << jugador_2 << "*******" <<endl;
-    
+void juego(){// Ejecuta el juego
     bool turnoJugador1 = true; // Variable para saber de quién es el turno
+    int opcion;
     
     while(!terminar_juego()){
-        cout<<"*****************************\n";
+        cout<<"*************************************\n";
         imprimir_tablero();
         if(turnoJugador1){
             cout << "Turno de: " << jugador_1 << endl;
-		    cout << "Ingrese el numero de fila en la que desea eliminar" << endl;
+		    cout << "Ingrese el numero de fila en la que desea \neliminar" << endl;
 		    cin >> seleccion_fila;
 		    cout << "Ingrese el numero de elementos a eliminar" << endl;
 		    cin >> eliminacion;
 		    modificacion_tablero(seleccion_fila,eliminacion);
         }else{
             cout << "Turno de: " << jugador_2 << endl;
-		    cout << "Ingrese el numero de fila en la que desea eliminar" << endl;
+		    cout << "Ingrese el numero de fila en la que desea \neliminar" << endl;
 		    cin >> seleccion_fila;
 		    cout << "Ingrese el numero de elementos a eliminar" << endl;
 		    cin >> eliminacion;
@@ -106,5 +96,36 @@ int main(){
         puntos_j1 += 3;
     }    
     cout << "\nPuntos:\n" << jugador_1 << ": " << puntos_j1 << endl << jugador_2 << ": " << puntos_j2 << "\n\n";
+    
+    //Pregunta al usuario si desea jugar otra partida
+    cout<<"*************************************\n";
+    cout<<"Desea Volver a jugar? \nIndique 1 para SI y 2 para NO\n";
+    cout<<"*************************************\n";
+    cin>>opcion;
+    switch(opcion){
+        case 1:
+            fila_1=3;
+            fila_2=5;
+            fila_3=7;
+            juego();
+        break;
+        default:
+            cout<<"****** GRACIAS POR JUGAR A NIM ******";
+        break;
+    }
+}
+
+int main(){
+    cout<<"*************************************\n";
+    cout<<"/*/*/*/ Bienvenido A NIM /*/*/*/\n";
+    cout<<"*************************************\n";
+    cout<<"Ingrese el nombre del jugador/a 1: ";
+    cin>>jugador_1;
+    cout<<"Ingrese el nombre del jugador/a 2: ";
+    cin>>jugador_2;
+    cout<<"*************************************\n";
+    cout << "*******" << jugador_1 << " vs " << jugador_2 << "*******" <<endl;
+    
+    juego();
     return 0;
 }
