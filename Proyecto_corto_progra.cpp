@@ -10,26 +10,26 @@ Programadores:
 
 using namespace std;
 
-int fila_1 = 3, fila_2 = 5, fila_3 = 7; // Número de objetos en cada fila
-int puntos_j1 = 0, puntos_j2 = 0; // Puntos de los jugadores
+int fila_1 = 3, fila_2 = 5, fila_3 = 7; // Número inicial de objetos en cada fila
+int puntos_j1 = 0, puntos_j2 = 0; // Puntos iniciales de cada jugador
 char logo = 220;// Objetos a elminar - Cubitos
 string jugador_1,jugador_2; // Nombres de los jugadores
 int seleccion_fila,eliminacion; //Fila y cantidad de Cubitos a Eliminar
 
 void imprimir_tablero(){ //Impresion del tablero de juego
-    cout << "\n   Fila 1: ";
+    cout << "\n   Fila 1: "; //Fila 1
     for(int i = 0; i < fila_1; i++) {
         cout <<logo<<" ";
     }
     cout << " (" << fila_1 << ")\n";
 
-    cout << "   Fila 2: ";
+    cout << "   Fila 2: "; //Fila 2
     for(int i = 0; i < fila_2; i++) {
         cout <<logo<<" ";
     }
     cout << " (" << fila_2 << ")\n";
 
-    cout << "   Fila 3: ";
+    cout << "   Fila 3: "; //Fila 3
     for(int i = 0; i < fila_3; i++) {
         cout <<logo<<" ";
     }
@@ -39,21 +39,33 @@ void imprimir_tablero(){ //Impresion del tablero de juego
 int modificacion_tablero(int fila, int cantidad){//Modifica la cantidad de objetos por fila
     switch(fila){
         case 1:
+			if(fila_1>0 && cantidad <= fila_1) //Verificacion si la fila 1 tiene elementos a eliminar 
             fila_1-=cantidad;
+			else // Si la fila esta vacia mostrar mensaje de turno perdido
+			cout<<"Fila o cantidad invalida"<<endl<<"Perdio su turno"<<endl;
         break;
         case 2:
+			if(fila_2>0 && cantidad <= fila_2) //verificacion si la fila 2 tiene elementos a eliminar
             fila_2-=cantidad;
+			else // Si la fila esta vacia mostrar mensaje de turno perdido
+			cout<<"Fila o cantidad invalida"<<endl<<"Perdio su turno"<<endl;
         break;
         case 3:
+			if(fila_3>0 && cantidad <= fila_3) //verificacion si la fila 3 tiene elementos a eliminar
             fila_3-=cantidad;
+			else // Si la fila esta vacia mostrar mensaje de turno perdido
+			cout<<"Fila o cantidad invalida"<<endl<<"Perdio su turno"<<endl;
         break;
+		default:
+			cout<<"Fila invalida"<<endl<<"Perdio su turno"<<endl;
+		break;
     }
     return fila;
 }
 
 bool terminar_juego(){//Comprueba si queda un objeto entre las 3 filas y finaliza la partida
     int objetos_restantes = fila_1 + fila_2 + fila_3;
-    return objetos_restantes == 1;
+	return objetos_restantes == 1;
 }
 
 void mostrarGanador(string jugador) {//Muestra el jugador que gana la partida
@@ -88,13 +100,23 @@ void juego(){// Ejecuta el juego
     }
         
     // Mostrar ganador y sumar puntos
-    if(turnoJugador1) {
-        mostrarGanador(jugador_2);
-        puntos_j2 += 3;
-    } else {
-        mostrarGanador(jugador_1);
-        puntos_j1 += 3;
-    }    
+	if(!terminar_juego())
+	{
+		cout << "\n************\n";
+    	cout << "¡EMPATE!\n";
+    	cout << "************\n";
+		puntos_j1 += 1;
+		puntos_j2 += 1;
+	}else{
+		if(turnoJugador1) {
+        	mostrarGanador(jugador_2);
+        	puntos_j2 += 3;
+    	} else {
+        	mostrarGanador(jugador_1);
+        	puntos_j1 += 3;
+    
+		}
+    }   
     cout << "\nPuntos:\n" << jugador_1 << ": " << puntos_j1 << endl << jugador_2 << ": " << puntos_j2 << "\n\n";
     
     //Pregunta al usuario si desea jugar otra partida
