@@ -65,7 +65,13 @@ int modificacion_tablero(int fila, int cantidad){//Modifica la cantidad de objet
 
 bool terminar_juego(){//Comprueba si queda un objeto entre las 3 filas y finaliza la partida
     int objetos_restantes = fila_1 + fila_2 + fila_3;
-	return objetos_restantes == 1;
+    if(fila_1==0 && fila_2==0 && fila_3==0)
+    {
+        objetos_restantes=1;
+        return objetos_restantes == 1;
+    }else{
+        return objetos_restantes == 1;
+    }
 }
 
 void mostrarGanador(string jugador) {//Muestra el jugador que gana la partida
@@ -100,14 +106,23 @@ void juego(){// Ejecuta el juego
     }
         
     // Mostrar ganador y sumar puntos
-		if(turnoJugador1) {
+    if(fila_1==0 && fila_2==0 && fila_3==0)
+    {
+        cout << "\n************\n";
+        cout << "¡EMPATE!\n";
+        cout << "************\n";
+        puntos_j1 += 1;
+        puntos_j2 += 1;
+    }else{
+        if(turnoJugador1) {
         	mostrarGanador(jugador_2);
         	puntos_j2 += 3;
     	} else {
         	mostrarGanador(jugador_1);
         	puntos_j1 += 3;
-    
-		}  
+		}
+    }
+		  
     cout << "\nPuntos:\n" << jugador_1 << ": " << puntos_j1 << endl << jugador_2 << ": " << puntos_j2 << "\n\n";
     
     //Pregunta al usuario si desea jugar otra partida
