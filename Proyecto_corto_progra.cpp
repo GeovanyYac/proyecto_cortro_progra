@@ -12,7 +12,7 @@ using namespace std;
 
 int fila_1 = 3, fila_2 = 5, fila_3 = 7; // Número inicial de objetos en cada fila
 int puntos_j1 = 0, puntos_j2 = 0; // Puntos iniciales de cada jugador
-char logo = 220;// Objetos a elminar - Cubitos
+char logo = 42;// Objetos a elminar - Cubitos
 string jugador_1,jugador_2; // Nombres de los jugadores
 int seleccion_fila,eliminacion; //Fila y cantidad de Cubitos a Eliminar
 
