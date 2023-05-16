@@ -81,7 +81,7 @@ void juego(){// Ejecuta el juego
     while(!terminar_juego()){
         cout<<"*************************************\n";
         imprimir_tablero();
-        if(turnoJugador1){
+        if(turnoJugador1){ //turno jugador 1
             cout << "Turno de: " << jugador_1 << endl;
 		    cout << "Ingrese el numero de fila en la que desea \neliminar" << endl;
 		    cin >> seleccion_fila;
@@ -89,7 +89,7 @@ void juego(){// Ejecuta el juego
 		    cin >> eliminacion;
 		    modificacion_tablero(seleccion_fila,eliminacion);
         }else{
-            cout << "Turno de: " << jugador_2 << endl;
+            cout << "Turno de: " << jugador_2 << endl; //turno jugador 2
 		    cout << "Ingrese el numero de fila en la que desea \neliminar" << endl;
 		    cin >> seleccion_fila;
 		    cout << "Ingrese el numero de elementos a eliminar" << endl;
